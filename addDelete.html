@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Generator</title>
+    <script src="jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="list">
+        <ul id="townList">
+            <li>varna</li>
+            <li>sofia</li>
+            <li>burgas</li>
+            <li>plovdiv</li>
+        </ul>
+    </div>
+    <div id="contols">
+        <input type="text" id="townName"/>
+        <button id="addBtn">add</button>
+        <button id="removeBtn">remove</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        let townsOnList  = $("#townList li").toArray();
+        console.log(townsOnList);
+        //console.log(townsOnList.join(', '));
+
+        $('#addBtn').click(function () {
+            let townToAdd = $('#townName').val();
+            let liToAdd = $(`<li>${townToAdd}</li>`);
+            $('#townList').append(liToAdd);
+            townsOnList.push(townToAdd);
+        });
+
+        $('#removeBtn').click(function () {
+            townsOnList  = $("#townList li").toArray();
+            let townToRemove = $('#townName').val();
+            console.log(townToRemove);
+            for(let town of townsOnList) {
+                if (town.textContent == townToRemove) {
+                    $(town).remove();
+                    console.log(`${town} -> ${townToRemove}`);
+                    //TODO: filter func
+                }
+            }
+
+            console.log(townsOnList);
+        });
+    });
+</script>
+</body>
+</html>
